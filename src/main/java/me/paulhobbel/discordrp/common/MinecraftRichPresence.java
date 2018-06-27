@@ -4,6 +4,7 @@ import me.paulhobbel.discordrp.api.dimension.IDimension;
 import me.paulhobbel.discordrp.api.rpc.DiscordRichPresence;
 import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.common.models.IManifest;
+import me.paulhobbel.discordrp.common.registry.DiscordAssetRegistry;
 import me.paulhobbel.discordrp.common.util.StringUtils;
 
 import java.util.ArrayList;
@@ -29,7 +30,8 @@ public class MinecraftRichPresence extends DiscordRichPresence {
 
         if(dimension != null) {
             detailParts.add(dimension.getTitle());
-            largeImageKey = "dim_" + dimension.getAssetKey();
+
+            largeImageKey = DiscordAssetRegistry.getKey("dim_" + dimension.getAssetKey());
             largeImageText = dimension.getAssetText();
         } else if(originalDetails != null) {
             detailParts.add(originalDetails);
@@ -37,7 +39,9 @@ public class MinecraftRichPresence extends DiscordRichPresence {
 
         if(manifest != null) {
             detailParts.add(manifest.getName());
-            smallImageKey = "pack_" + manifest.getProjectId();
+            if(DiscordAssetRegistry.contains("pack_" + manifest.getProjectId())) {
+                smallImageKey = "pack_" + manifest.getProjectId();
+            }
             smallImageText = manifest.getName();
         }
 

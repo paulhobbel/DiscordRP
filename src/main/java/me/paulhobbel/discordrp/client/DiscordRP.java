@@ -21,6 +21,8 @@ public class DiscordRP {
 
     @Mod.EventHandler
     public void onConstruction(FMLConstructionEvent event) {
+        // Yea this is my first mod so I am allowed to do this
+        logger.info("Hello World!");
         proxy.onConstruction(event);
     }
 
