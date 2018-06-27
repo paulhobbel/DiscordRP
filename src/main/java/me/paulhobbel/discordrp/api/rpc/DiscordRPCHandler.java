@@ -24,7 +24,7 @@ public class DiscordRPCHandler implements Runnable {
             DiscordRPC.RunCallbacks();
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 DiscordRPC.Shutdown();
                 break;

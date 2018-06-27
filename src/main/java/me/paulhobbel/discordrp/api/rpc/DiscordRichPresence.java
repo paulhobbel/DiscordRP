@@ -6,9 +6,39 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Struct wrapper for RichPresence
+ *
+ * <pre>{@code
+ * typedef struct DiscordRichPresence {
+ *     const char* state; // max 128 bytes
+ *     const char* details; // max 128 bytes
+ *     int64_t startTimestamp;
+ *     int64_t endTimestamp;
+ *     const char* largeImageKey; // max 32 bytes
+ *     const char* largeImageText; // max 128 bytes
+ *     const char* smallImageKey; // max 32 bytes
+ *     const char* smallImageText; // max 128 bytes
+ *     const char* partyId; // max 128 bytes
+ *     int partySize;
+ *     int partyMax;
+ *     const char* matchSecret; // max 128 bytes
+ *     const char* joinSecret; // max 128 bytes
+ *     const char* spectateSecret; // max 128 bytes
+ *     int8_t instance;
+ * } DiscordRichPresence;
+ * }</pre>
+ */
 public class DiscordRichPresence extends Structure {
 
+    /**
+     * The user's current party status
+     */
     public String state;
+
+    /**
+     * What the player is currently doing
+     */
     public String details;
 
     public long startTimestamp;
@@ -31,22 +61,8 @@ public class DiscordRichPresence extends Structure {
     public byte instance;
 
     private static final List<String> FIELD_ORDER = Collections.unmodifiableList(Arrays.asList(
-            "state",
-            "details",
-            "startTimestamp",
-            "endTimestamp",
-            "largeImageKey",
-            "largeImageText",
-            "smallImageKey",
-            "smallImageText",
-            "partyId",
-            "partySize",
-            "partyMax",
-            "matchSecret",
-            "joinSecret",
-            "spectateSecret",
-            "instance"
-    ));
+            "state", "details", "startTimestamp", "endTimestamp", "largeImageKey", "largeImageText", "smallImageKey",
+            "smallImageText", "partyId", "partySize", "partyMax", "matchSecret", "joinSecret", "spectateSecret", "instance"));
 
     public DiscordRichPresence(BaseBuilder<?, ?> builder) {
         state = builder.state;
@@ -97,29 +113,29 @@ public class DiscordRichPresence extends Structure {
     }
 
     public abstract static class BaseBuilder<T extends BaseBuilder<T, R>, R extends DiscordRichPresence> {
-        private String state;
-        private String details;
+        protected String state;
+        protected String details;
 
-        private long startTimestamp;
-        private long endTimestamp;
+        protected long startTimestamp;
+        protected long endTimestamp;
 
-        private String largeImageKey;
-        private String largeImageText;
+        protected String largeImageKey;
+        protected String largeImageText;
 
-        private String smallImageKey;
-        private String smallImageText;
+        protected String smallImageKey;
+        protected String smallImageText;
 
-        private String partyId;
-        private int partySize;
-        private int partyMax;
+        protected String partyId;
+        protected int partySize;
+        protected int partyMax;
 
-        private String matchSecret;
-        private String joinSecret;
-        private String spectateSecret;
+        protected String matchSecret;
+        protected String joinSecret;
+        protected String spectateSecret;
 
-        private byte instance;
+        protected byte instance;
 
-        public BaseBuilder() {
+        protected BaseBuilder() {
 
         }
 

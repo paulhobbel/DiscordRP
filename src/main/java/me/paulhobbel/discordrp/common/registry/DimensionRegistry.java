@@ -1,48 +1,34 @@
 package me.paulhobbel.discordrp.common.registry;
 
-import me.paulhobbel.discordrp.api.Dimension;
-import me.paulhobbel.discordrp.common.DiscordRP;
-import me.paulhobbel.discordrp.common.init.ModDimensions;
-import net.minecraft.util.ResourceLocation;
+import me.paulhobbel.discordrp.api.dimension.IDimension;
+import me.paulhobbel.discordrp.client.DiscordRP;
 import net.minecraft.world.World;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryInternal;
-import net.minecraftforge.registries.RegistryBuilder;
-import net.minecraftforge.registries.RegistryManager;
 
-import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = DiscordRP.MODID)
 public class DimensionRegistry {
-    private static IForgeRegistry<Dimension> REGISTRY;
 
-    @SubscribeEvent
-    public static void registerRegistry(RegistryEvent.NewRegistry event) {
-        REGISTRY = new RegistryBuilder<Dimension>()
-                .setName(new ResourceLocation(DiscordRP.MODID, "dimensions"))
-                .setType(Dimension.class)
-                .addCallback(new RegistryCallbacks())
-                .create();
+    private static Map<String, IDimension> dimensions = new HashMap<>();
+
+    public static void register(IDimension dimension) {
+        if(!dimensions.containsKey(dimension.getAssetKey())) {
+            dimensions.put(dimension.getAssetKey(), dimension);
+            DiscordRP.logger.info("Registered new dimension: " + dimension.getAssetKey());
+        } else {
+            DiscordRP.logger.warn("Dimension " + dimension.getAssetKey() + " was already registered");
+        }
     }
 
-    public static Dimension getDimension(World world) {
-        if(REGISTRY == null) throw new RuntimeException("Registry was not loaded yet");
+    public static IDimension get(String assetKey) {
+        return dimensions.get(assetKey);
+    }
 
-        return REGISTRY.getValuesCollection().stream()
+    public static IDimension get(World world) {
+        return dimensions.values().stream()
                 .filter(dimension -> dimension.getPredicate() != null)
                 .filter(dimension -> dimension.getPredicate().test(world))
                 .findFirst()
-                .orElse(ModDimensions.UNKNOWN);
-    }
-
-    private static class RegistryCallbacks implements IForgeRegistry.AddCallback<Dimension> {
-        @Override
-        public void onAdd(IForgeRegistryInternal<Dimension> owner, RegistryManager stage, int id, Dimension obj, @Nullable Dimension oldObj) {
-            DiscordRP.logger.info("Registered new dimension: " + obj.getKey());
-            DiscordRP.logger.info("Entries: " + owner.getEntries());
-        }
+                .orElse(IDimension.UNKNOWN);
     }
 }

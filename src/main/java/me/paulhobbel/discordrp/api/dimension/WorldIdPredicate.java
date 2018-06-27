@@ -1,4 +1,4 @@
-package me.paulhobbel.discordrp.api.world;
+package me.paulhobbel.discordrp.api.dimension;
 
 import net.minecraft.world.World;
 
