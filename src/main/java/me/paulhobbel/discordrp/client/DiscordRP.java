@@ -2,6 +2,7 @@ package me.paulhobbel.discordrp.client;
 
 import me.paulhobbel.discordrp.common.CommonProxy;
 
+import me.paulhobbel.discordrp.common.Log;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
@@ -14,15 +15,13 @@ public class DiscordRP {
     public static final String NAME = "Discord Rich Presence";
     public static final String VERSION = "${version}";
 
-    public static Logger logger = LogManager.getLogger("DiscordRP");
-
     @SidedProxy(modId = MODID, clientSide = "me.paulhobbel.discordrp.client.ClientProxy")
     private static CommonProxy proxy;
 
     @Mod.EventHandler
     public void onConstruction(FMLConstructionEvent event) {
         // Yea this is my first mod so I am allowed to do this
-        logger.info("Hello World!");
+        Log.info("Hello World!");
         proxy.onConstruction(event);
     }
 

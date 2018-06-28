@@ -1,6 +1,7 @@
 package me.paulhobbel.discordrp.common.registry;
 
 import me.paulhobbel.discordrp.client.DiscordRP;
+import me.paulhobbel.discordrp.common.Log;
 import me.paulhobbel.discordrp.common.asset.DiscordAsset;
 import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.common.util.UrlUtils;
@@ -29,7 +30,7 @@ public class DiscordAssetRegistry {
     }
 
     public static void loadAssets() {
-        DiscordRP.logger.info("Asking dear Discord for available assets");
+        Log.info("Asking dear Discord for available assets");
         assets = new HashMap<>();
 
         //new Thread(() -> {
@@ -42,10 +43,10 @@ public class DiscordAssetRegistry {
                     DiscordAssetRegistry.assets.put(asset.getName(), asset);
                 }
 
-                DiscordRP.logger.info("Discord gave us " + DiscordAssetRegistry.assets.size() + " assets to work with hurray!");
+                Log.info("Discord gave us " + DiscordAssetRegistry.assets.size() + " assets to work with hurray!");
 
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.error("An error occured while loading the assets", e);
             }
         //}).start();
     }

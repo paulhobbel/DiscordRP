@@ -8,6 +8,7 @@ import me.paulhobbel.discordrp.common.MinecraftRichPresence;
 import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.common.init.ManifestManager;
 import me.paulhobbel.discordrp.common.init.ModDimensions;
+import me.paulhobbel.discordrp.common.registry.DimensionRegistry;
 import me.paulhobbel.discordrp.common.registry.DiscordAssetRegistry;
 import net.minecraftforge.fml.common.event.*;
 
@@ -49,6 +50,8 @@ public class ClientProxy implements CommonProxy {
 
     @Override
     public void onInit(FMLInitializationEvent event) {
+        ModDimensions.registerDimensions();
+
         presence = presence.buildUpon()
                 .state("FML Initialization")
                 .build();
@@ -58,8 +61,6 @@ public class ClientProxy implements CommonProxy {
 
     @Override
     public void onPostInit(FMLPostInitializationEvent event) {
-        ModDimensions.registerDimensions();
-
         presence = presence.buildUpon()
                 .state("FML PostInitialization")
                 .build();

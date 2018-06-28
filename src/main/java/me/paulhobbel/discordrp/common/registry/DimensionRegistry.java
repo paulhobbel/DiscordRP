@@ -2,6 +2,7 @@ package me.paulhobbel.discordrp.common.registry;
 
 import me.paulhobbel.discordrp.api.dimension.IDimension;
 import me.paulhobbel.discordrp.client.DiscordRP;
+import me.paulhobbel.discordrp.common.Log;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -14,9 +15,9 @@ public class DimensionRegistry {
     public static void register(IDimension dimension) {
         if(!dimensions.containsKey(dimension.getAssetKey())) {
             dimensions.put(dimension.getAssetKey(), dimension);
-            DiscordRP.logger.info("Registered new dimension: " + dimension.getAssetKey());
+            Log.info("Registered new dimension: ", dimension.getAssetKey());
         } else {
-            DiscordRP.logger.warn("Dimension " + dimension.getAssetKey() + " was already registered");
+            Log.warn("Dimension ", dimension.getAssetKey(), " was already registered");
         }
     }
 
