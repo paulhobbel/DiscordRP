@@ -1,0 +1,16 @@
+[
+{
+  "modid": "discordrp",
+  "name": "Discord Rich Presence",
+  "description": "Discord Rich Presence integration in Minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ItsDizzy"],
+  "credits": "Created by ItsDizzy",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
