@@ -10,10 +10,16 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
+def build_number
 
-version = "${discordrp_version}_${mc_version}"
+if (System.getenv('APPVEYOR_BUILD_NUMBER') != null)
+    build_number = System.getenv('APPVEYOR_BUILD_NUMBER')
+else
+    build_number = "git rev-parse --short HEAD".execute().text.trim()
+
+version = "${discordrp_version}.${build_number}"
 group = "me.paulhobbel.discordrp"
-archivesBaseName = "DiscordRP"
+archivesBaseName = "DiscordRP-${mc_version}"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
