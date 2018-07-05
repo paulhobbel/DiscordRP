@@ -8,7 +8,7 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'com.matthewprenger.cursegradle'
 
 def build_number
 
@@ -106,4 +106,19 @@ tasks.build.dependsOn apiJar, sourcesJar
 
 tasks.withType(JavaCompile) { task ->
     task.options.encoding = 'UTF-8'
+}
+
+curseforge {
+    if (System.getenv("CF_APIKEY") != null && System.getenv("CF_DEPLOY") == "true")
+        apiKey = System.getenv("CF_APIKEY")
+
+    project {
+        id = "296803"
+        changelog = file("CHANGELOG.md")
+        changelogType = "markdown"
+        releaseType = 'beta'
+
+        addArtifact sourcesJar
+        addArtifact apiJar
+    }
 }
