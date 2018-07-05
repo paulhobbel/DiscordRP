@@ -6,7 +6,7 @@ import me.paulhobbel.discordrp.api.IDiscordRPRegistry;
 import me.paulhobbel.discordrp.api.impl.Dimension;
 import me.paulhobbel.discordrp.api.world.WorldTypePredicate;
 
-@DiscordRPPlugin("aromas1997sdimenion")
+@DiscordRPPlugin("aroma1997sdimension")
 public class AromasPlugin implements IDiscordRPPlugin {
     @Override
     public void register(IDiscordRPRegistry registry) {
