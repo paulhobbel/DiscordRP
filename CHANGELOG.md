@@ -1,6 +1,6 @@
 # DiscordRP Changelog
 
-## v1.2.0
+## v1.2.0 (07/06/2018)
  - Split DiscordRP's API into it's own jar so other mods can actually use it
  - DiscordRP now has support for plugins (replaces the cheaty DimensionRegistry)
  - Cleaned up code base, and moved a lot of code away from the actual api.
