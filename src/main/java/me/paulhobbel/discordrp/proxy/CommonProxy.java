@@ -10,6 +10,7 @@ import me.paulhobbel.discordrp.utils.PluginUtils;
 import net.minecraftforge.fml.common.event.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CommonProxy implements IProxy {
@@ -37,7 +38,7 @@ public class CommonProxy implements IProxy {
     @Override
     public void onLoadComplete(FMLLoadCompleteEvent event) {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        Map<Class<?>, IDiscordRPPlugin> plugins = new HashMap<>();
+        Map<Class<?>, IDiscordRPPlugin> plugins = new LinkedHashMap<>();
 
         Log.info("Registering plugins...");
         //plugins.remove(new DiscordRPPlugin()).register();
@@ -48,6 +49,6 @@ public class CommonProxy implements IProxy {
             plugin.getValue().register(Registry.getInstance());
         }
 
-        Log.info("Loading plugins took {}", stopwatch.stop());
+        Log.info("Registering plugins took {}", stopwatch.stop());
     }
 }
