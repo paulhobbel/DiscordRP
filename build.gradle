@@ -113,7 +113,7 @@ tasks.withType(JavaCompile) { task ->
 }
 
 curseforge {
-    if (System.getenv("CF_APIKEY") != null && System.getenv("CF_DEPLOY") == "true")
+    if (System.getenv("CF_APIKEY") != null)
         apiKey = System.getenv("CF_APIKEY")
 
     project {
