@@ -33,7 +33,7 @@ public class GameHandler {
     @SubscribeEvent
     public static void onJoinWorld(EntityJoinWorldEvent event) {
         if(event.getEntity().equals(Minecraft.getMinecraft().player)) {
-            IDiscordRPDimension dimension = Registry.getInstance().getDimension(event.getWorld());
+            IDiscordRPDimension dimension = Registry.getInstance().getDimension(event.getWorld()).orElse(Registry.DEFAULT_DIMENSION);
 
             presence = presence.buildUpon()
                     .dimension(dimension)

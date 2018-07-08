@@ -10,12 +10,13 @@ import net.minecraftforge.fml.common.event.*;
 
 import java.util.Set;
 
-@Mod(modid = DiscordRP.MODID, name = DiscordRP.NAME, version = DiscordRP.VERSION, clientSideOnly = true, certificateFingerprint = DiscordRP.FINGERPRINT)
+@Mod(modid = DiscordRP.MODID, name = DiscordRP.NAME, version = DiscordRP.VERSION, clientSideOnly = true, certificateFingerprint = DiscordRP.FINGERPRINT, updateJSON = DiscordRP.UPDATEJSON)
 public class DiscordRP {
     public static final String MODID = "discordrp";
     public static final String NAME = "Discord Rich Presence";
     public static final String VERSION = "@VERSION@";
     public static final String FINGERPRINT = "5b6b19557df723bd85d474a32d64e4e191a2b42a";
+    public static final String UPDATEJSON = "https://raw.githubusercontent.com/ItsDizzy/DiscordRP/develop/update.json";
 
     public static Set<ASMDataTable.ASMData> plugins;
 

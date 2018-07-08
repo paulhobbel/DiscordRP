@@ -5,6 +5,7 @@ import me.paulhobbel.discordrp.api.IDiscordRPRegistry;
 import net.minecraft.world.World;
 
 import java.util.LinkedHashMap;
+import java.util.Optional;
 
 public class Registry implements IDiscordRPRegistry {
 
@@ -12,14 +13,17 @@ public class Registry implements IDiscordRPRegistry {
 
     private final LinkedHashMap<String, IDiscordRPDimension> dimensionMap = new LinkedHashMap<>();
 
+    public static final Dimension DEFAULT_DIMENSION = new Dimension("default", "Unknown Dimension");
+
     @Override
     public void registerDimension(IDiscordRPDimension dimension, String key) {
         dimensionMap.put(key, dimension);
     }
 
     @Override
-    public IDiscordRPDimension getDimension(World world) {
-        return dimensionMap.get(world.provider.getDimensionType().getName());
+    public Optional<IDiscordRPDimension> getDimension(World world) {
+        return Optional.of(dimensionMap.get(world.provider.getDimensionType().getName()));
+        //return dimensionMap.get(world.provider.getDimensionType().getName());
     }
 
     public static Registry getInstance() {
