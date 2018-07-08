@@ -10,8 +10,8 @@ import me.paulhobbel.discordrp.api.impl.Dimension;
 public class MinecraftPlugin implements IDiscordRPPlugin {
     @Override
     public void register(IDiscordRPRegistry registry) {
-        registry.registerDimension(new Dimension("overworld", "In The Overworld"), "overworld");
-        registry.registerDimension(new Dimension("nether", "In The Nether"), "the_nether");
-        registry.registerDimension(new Dimension("end", "In The End"), "the_end");
+        registry.registerDimension(new Dimension("overworld", "Overworld"), "overworld");
+        registry.registerDimension(new Dimension("nether", "Nether"), "the_nether");
+        registry.registerDimension(new Dimension("end", "End"), "the_end");
     }
 }

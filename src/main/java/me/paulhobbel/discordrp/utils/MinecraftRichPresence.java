@@ -5,6 +5,7 @@ import me.paulhobbel.discordrp.api.rpc.DiscordRichPresence;
 import me.paulhobbel.discordrp.manager.DiscordAssetManager;
 import me.paulhobbel.discordrp.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.api.IDiscordRPManifest;
+import net.minecraft.client.resources.I18n;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class MinecraftRichPresence extends DiscordRichPresence {
         List<Object> detailParts = new ArrayList<>();
 
         if(dimension != null) {
-            detailParts.add(dimension.getTitle());
+            detailParts.add(I18n.format("discordrp.dimension", dimension.getTitle()));
 
             largeImageKey = DiscordAssetManager.getKey("dim_" + dimension.getAssetKey());
             largeImageText = dimension.getAssetText();

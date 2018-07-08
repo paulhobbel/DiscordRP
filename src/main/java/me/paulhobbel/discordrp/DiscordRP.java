@@ -3,6 +3,7 @@ package me.paulhobbel.discordrp;
 import me.paulhobbel.discordrp.proxy.IProxy;
 
 import me.paulhobbel.discordrp.utils.Log;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
@@ -24,7 +25,7 @@ public class DiscordRP {
 
     @Mod.EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
-        Log.warn("This version was not signed properly, this is probably a development build and will not receive any support! Use at own risk");
+        Log.warn("This version was not signed properly, this is probably a development build and will not receive any support, use at own risk!");
     }
 
     @Mod.EventHandler

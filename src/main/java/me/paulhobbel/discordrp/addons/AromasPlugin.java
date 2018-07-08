@@ -9,6 +9,6 @@ import me.paulhobbel.discordrp.api.impl.Dimension;
 public class AromasPlugin implements IDiscordRPPlugin {
     @Override
     public void register(IDiscordRPRegistry registry) {
-        registry.registerDimension(new Dimension("miningworld", "In The Mining World"),"MiningWorld");
+        registry.registerDimension(new Dimension("miningworld", "Mining World"),"MiningWorld");
     }
 }
