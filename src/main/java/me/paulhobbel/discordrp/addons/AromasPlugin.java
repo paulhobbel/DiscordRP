@@ -4,7 +4,6 @@ import me.paulhobbel.discordrp.api.DiscordRPPlugin;
 import me.paulhobbel.discordrp.api.IDiscordRPPlugin;
 import me.paulhobbel.discordrp.api.IDiscordRPRegistry;
 import me.paulhobbel.discordrp.api.impl.Dimension;
-import me.paulhobbel.discordrp.api.world.WorldTypePredicate;
 
 @DiscordRPPlugin(modid = "aroma1997sdimension")
 public class AromasPlugin implements IDiscordRPPlugin {

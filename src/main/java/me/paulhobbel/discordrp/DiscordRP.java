@@ -10,16 +10,22 @@ import net.minecraftforge.fml.common.event.*;
 
 import java.util.Set;
 
-@Mod(modid = DiscordRP.MODID, name = DiscordRP.NAME, version = DiscordRP.VERSION, clientSideOnly = true)
+@Mod(modid = DiscordRP.MODID, name = DiscordRP.NAME, version = DiscordRP.VERSION, clientSideOnly = true, certificateFingerprint = DiscordRP.FINGERPRINT)
 public class DiscordRP {
     public static final String MODID = "discordrp";
     public static final String NAME = "Discord Rich Presence";
     public static final String VERSION = "@VERSION@";
+    public static final String FINGERPRINT = "5b6b19557df723bd85d474a32d64e4e191a2b42a";
 
     public static Set<ASMDataTable.ASMData> plugins;
 
     @SidedProxy(modId = MODID, clientSide = "me.paulhobbel.discordrp.proxy.ClientProxy")
     private static IProxy proxy;
+
+    @Mod.EventHandler
+    public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
+        Log.warn("This version was not signed properly, this is probably a development build and will not receive any support! Use at own risk");
+    }
 
     @Mod.EventHandler
     public void onConstruction(FMLConstructionEvent event) {

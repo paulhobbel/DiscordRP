@@ -5,11 +5,11 @@
   "description": "Discord Rich Presence integration in Minecraft",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
+  "url": "https://minecraft.curseforge.com/projects/discordrp",
+  "updateJSON": "https://raw.githubusercontent.com/ItsDizzy/DiscordRP/develop/update.json",
   "authorList": ["ItsDizzy"],
   "credits": "Created by ItsDizzy",
-  "logoFile": "",
+  "logoFile": "assets/discordrp/textures/logo.png",
   "screenshots": [],
   "dependencies": []
 }

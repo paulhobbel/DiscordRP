@@ -38,30 +38,9 @@ minecraft {
     replace "@VERSION@", project.version
 
     replaceIn "DiscordRP.java"
-    makeObfSourceJar = true
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 }
 
@@ -101,14 +80,23 @@ task sourcesJar(type: Jar) {
     from sourceSets.api.allJava
 }
 
-tasks.build.dependsOn apiJar, sourcesJar
+task signJar(type: SignJar, dependsOn: reobfJar) {
+    onlyIf {
+        System.getenv("SIGNING_STORE_PASS") != null
+    }
 
-tasks.withType(JavaCompile) { task ->
-    task.options.encoding = 'UTF-8'
+    keyStore = "keystore.jks"
+    alias = System.getenv("SIGNING_ALIAS")
+
+    storePass = System.getenv("SIGNING_STORE_PASS")
+    keyPass = System.getenv("SIGNING_KEY_PASS") != null ? System.getenv("SIGNING_KEY_PASS") : System.getenv("SIGNING_STORE_PASS")
+
+    inputFile = jar.archivePath
+    outputFile = jar.archivePath
 }
 
 curseforge {
-    if (System.getenv("CF_APIKEY") != null && System.getenv("CF_DEPLOY") == "true")
+    if (System.getenv("CF_APIKEY") != null)
         apiKey = System.getenv("CF_APIKEY")
 
     project {
@@ -121,3 +109,5 @@ curseforge {
         addArtifact apiJar
     }
 }
+
+tasks.build.dependsOn apiJar, sourcesJar, signJar
