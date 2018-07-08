@@ -1,4 +1,4 @@
-package me.paulhobbel.discordrp.models;
+package me.paulhobbel.discordrp.common.models;
 
 import com.google.gson.annotations.SerializedName;
 

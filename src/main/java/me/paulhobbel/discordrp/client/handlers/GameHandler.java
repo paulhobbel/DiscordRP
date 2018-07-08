@@ -1,10 +1,10 @@
-package me.paulhobbel.discordrp.handlers;
+package me.paulhobbel.discordrp.client.handlers;
 
 import me.paulhobbel.discordrp.api.IDiscordRPDimension;
 import me.paulhobbel.discordrp.api.impl.Registry;
 import me.paulhobbel.discordrp.DiscordRP;
-import me.paulhobbel.discordrp.utils.MinecraftRichPresence;
-import me.paulhobbel.discordrp.manager.ManifestManager;
+import me.paulhobbel.discordrp.common.MinecraftRichPresence;
+import me.paulhobbel.discordrp.common.manager.ManifestManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;

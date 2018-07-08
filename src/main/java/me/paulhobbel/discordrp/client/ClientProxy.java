@@ -1,12 +1,13 @@
-package me.paulhobbel.discordrp.proxy;
+package me.paulhobbel.discordrp.client;
 
 import me.paulhobbel.discordrp.api.rpc.DiscordEventHandlers;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPC;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPCHandler;
-import me.paulhobbel.discordrp.utils.MinecraftRichPresence;
-import me.paulhobbel.discordrp.manager.DiscordAssetManager;
-import me.paulhobbel.discordrp.config.DiscordRPConfig;
-import me.paulhobbel.discordrp.manager.ManifestManager;
+import me.paulhobbel.discordrp.common.CommonProxy;
+import me.paulhobbel.discordrp.common.MinecraftRichPresence;
+import me.paulhobbel.discordrp.common.manager.DiscordAssetManager;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
+import me.paulhobbel.discordrp.common.manager.ManifestManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.event.*;
 

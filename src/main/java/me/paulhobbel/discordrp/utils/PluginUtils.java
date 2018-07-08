@@ -1,9 +1,9 @@
 package me.paulhobbel.discordrp.utils;
 
 import com.google.common.base.Stopwatch;
-import it.unimi.dsi.fastutil.ints.IntComparator;
 import me.paulhobbel.discordrp.DiscordRP;
 import me.paulhobbel.discordrp.api.IDiscordRPPlugin;
+import me.paulhobbel.discordrp.common.Log;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 

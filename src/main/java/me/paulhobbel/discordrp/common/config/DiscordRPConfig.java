@@ -1,4 +1,4 @@
-package me.paulhobbel.discordrp.config;
+package me.paulhobbel.discordrp.common.config;
 
 import me.paulhobbel.discordrp.DiscordRP;
 import net.minecraftforge.common.config.Config;

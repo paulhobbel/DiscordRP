@@ -1,8 +1,8 @@
-package me.paulhobbel.discordrp.manager;
+package me.paulhobbel.discordrp.common.manager;
 
-import me.paulhobbel.discordrp.utils.Log;
-import me.paulhobbel.discordrp.models.DiscordAsset;
-import me.paulhobbel.discordrp.config.DiscordRPConfig;
+import me.paulhobbel.discordrp.common.Log;
+import me.paulhobbel.discordrp.common.models.DiscordAsset;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.utils.UrlUtils;
 
 import java.io.IOException;

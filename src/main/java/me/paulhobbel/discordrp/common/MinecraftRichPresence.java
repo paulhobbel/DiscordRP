@@ -1,9 +1,9 @@
-package me.paulhobbel.discordrp.utils;
+package me.paulhobbel.discordrp.common;
 
 import me.paulhobbel.discordrp.api.IDiscordRPDimension;
 import me.paulhobbel.discordrp.api.rpc.DiscordRichPresence;
-import me.paulhobbel.discordrp.manager.DiscordAssetManager;
-import me.paulhobbel.discordrp.config.DiscordRPConfig;
+import me.paulhobbel.discordrp.common.manager.DiscordAssetManager;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.api.IDiscordRPManifest;
 import net.minecraft.client.resources.I18n;
 
@@ -26,7 +26,7 @@ public class MinecraftRichPresence extends DiscordRichPresence {
 
         largeImageKey = "main_menu";
 
-        List<Object> detailParts = new ArrayList<>();
+        List<String> detailParts = new ArrayList<>();
 
         if(dimension != null) {
             detailParts.add(I18n.format("discordrp.dimension", dimension.getTitle()));
@@ -45,7 +45,7 @@ public class MinecraftRichPresence extends DiscordRichPresence {
             smallImageText = manifest.getName();
         }
 
-        details = StringUtils.join(" | ", detailParts.toArray());
+        details = String.join(" | ", detailParts);
     }
 
     @Override

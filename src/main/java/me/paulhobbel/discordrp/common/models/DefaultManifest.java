@@ -1,4 +1,4 @@
-package me.paulhobbel.discordrp.models;
+package me.paulhobbel.discordrp.common.models;
 
 import me.paulhobbel.discordrp.api.IDiscordRPManifest;
 import net.minecraft.client.Minecraft;

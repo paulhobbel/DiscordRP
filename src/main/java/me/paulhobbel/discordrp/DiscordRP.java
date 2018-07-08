@@ -1,9 +1,8 @@
 package me.paulhobbel.discordrp;
 
-import me.paulhobbel.discordrp.proxy.IProxy;
+import me.paulhobbel.discordrp.common.CommonProxy;
 
-import me.paulhobbel.discordrp.utils.Log;
-import net.minecraft.client.resources.I18n;
+import me.paulhobbel.discordrp.common.Log;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
@@ -20,8 +19,8 @@ public class DiscordRP {
 
     public static Set<ASMDataTable.ASMData> plugins;
 
-    @SidedProxy(modId = MODID, clientSide = "me.paulhobbel.discordrp.proxy.ClientProxy")
-    private static IProxy proxy;
+    @SidedProxy(modId = MODID, clientSide = "me.paulhobbel.discordrp.client.ClientProxy")
+    private static CommonProxy proxy;
 
     @Mod.EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event) {

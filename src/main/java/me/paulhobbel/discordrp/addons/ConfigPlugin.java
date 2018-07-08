@@ -5,8 +5,8 @@ import me.paulhobbel.discordrp.api.DiscordRPPlugin;
 import me.paulhobbel.discordrp.api.IDiscordRPPlugin;
 import me.paulhobbel.discordrp.api.IDiscordRPRegistry;
 import me.paulhobbel.discordrp.api.impl.Dimension;
-import me.paulhobbel.discordrp.config.DiscordRPConfig;
-import me.paulhobbel.discordrp.utils.Log;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
+import me.paulhobbel.discordrp.common.Log;
 
 @DiscordRPPlugin(modid = DiscordRP.MODID, priority = -1)
 public class ConfigPlugin implements IDiscordRPPlugin {
