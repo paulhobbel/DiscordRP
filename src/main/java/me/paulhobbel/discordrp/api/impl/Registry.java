@@ -5,27 +5,25 @@ import me.paulhobbel.discordrp.api.IDiscordRPRegistry;
 import net.minecraft.world.World;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.function.Predicate;
+import java.util.Optional;
 
 public class Registry implements IDiscordRPRegistry {
 
     private static Registry instance;
 
-    private final LinkedHashMap<Predicate<World>, IDiscordRPDimension> dimensionMap = new LinkedHashMap<>();
+    private final LinkedHashMap<String, IDiscordRPDimension> dimensionMap = new LinkedHashMap<>();
+
+    public static final Dimension DEFAULT_DIMENSION = new Dimension("default", "Unknown Dimension");
 
     @Override
-    public void registerDimension(IDiscordRPDimension dimension, Predicate<World> predicate) {
-        dimensionMap.put(predicate, dimension);
+    public void registerDimension(IDiscordRPDimension dimension, String key) {
+        dimensionMap.put(key, dimension);
     }
 
     @Override
-    public IDiscordRPDimension getDimension(World world) {
-        return dimensionMap.entrySet().stream()
-                .filter(e -> e.getKey().test(world))
-                .map(Map.Entry::getValue)
-                .findFirst()
-                .orElse(null);
+    public Optional<IDiscordRPDimension> getDimension(World world) {
+        return Optional.of(dimensionMap.get(world.provider.getDimensionType().getName()));
+        //return dimensionMap.get(world.provider.getDimensionType().getName());
     }
 
     public static Registry getInstance() {

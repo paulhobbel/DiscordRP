@@ -1,10 +1,10 @@
-package me.paulhobbel.discordrp.manager;
+package me.paulhobbel.discordrp.common.manager;
 
 import com.google.gson.Gson;
-import me.paulhobbel.discordrp.config.DiscordRPConfig;
-import me.paulhobbel.discordrp.models.ConfigManifest;
-import me.paulhobbel.discordrp.models.CurseManifest;
-import me.paulhobbel.discordrp.models.DefaultManifest;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
+import me.paulhobbel.discordrp.common.models.ConfigManifest;
+import me.paulhobbel.discordrp.common.models.CurseManifest;
+import me.paulhobbel.discordrp.common.models.DefaultManifest;
 import me.paulhobbel.discordrp.api.IDiscordRPManifest;
 import org.apache.commons.io.FileUtils;
 

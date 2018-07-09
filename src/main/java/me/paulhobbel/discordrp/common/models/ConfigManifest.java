@@ -1,7 +1,7 @@
-package me.paulhobbel.discordrp.models;
+package me.paulhobbel.discordrp.common.models;
 
 import me.paulhobbel.discordrp.api.IDiscordRPManifest;
-import me.paulhobbel.discordrp.config.DiscordRPConfig;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 
 import javax.annotation.Nonnull;
 

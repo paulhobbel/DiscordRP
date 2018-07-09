@@ -1,12 +1,14 @@
-package me.paulhobbel.discordrp.proxy;
+package me.paulhobbel.discordrp.client;
 
 import me.paulhobbel.discordrp.api.rpc.DiscordEventHandlers;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPC;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPCHandler;
-import me.paulhobbel.discordrp.utils.MinecraftRichPresence;
-import me.paulhobbel.discordrp.manager.DiscordAssetManager;
-import me.paulhobbel.discordrp.config.DiscordRPConfig;
-import me.paulhobbel.discordrp.manager.ManifestManager;
+import me.paulhobbel.discordrp.common.CommonProxy;
+import me.paulhobbel.discordrp.common.MinecraftRichPresence;
+import me.paulhobbel.discordrp.common.manager.DiscordAssetManager;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
+import me.paulhobbel.discordrp.common.manager.ManifestManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.event.*;
 
 public class ClientProxy extends CommonProxy {
@@ -28,22 +30,26 @@ public class ClientProxy extends CommonProxy {
         DiscordRPC.Initialize(!DiscordRPConfig.applicationId.isEmpty() ? DiscordRPConfig.applicationId : "460129247239864330", handlers);
         DiscordRPCHandler.start();
 
-        presence = new MinecraftRichPresence.Builder()
-                .state("FML Construction")
-                .details("Loading Minecraft")
-                .startTimestamp(System.currentTimeMillis() / 1000)
-                .manifest(ManifestManager.getManifest())
-                .build();
-
-        presence.setPresence();
+        // Translations are not loaded yet here it seems
+//        presence = new MinecraftRichPresence.Builder()
+//                .state(I18n.format("discordrp.state.construction"))
+//                .details(I18n.format("discordrp.loading"))
+//                .startTimestamp(System.currentTimeMillis() / 1000)
+//                .manifest(ManifestManager.getManifest())
+//                .build();
+//
+//        presence.setPresence();
     }
 
     @Override
     public void onPreInit(FMLPreInitializationEvent event) {
         super.onPreInit(event);
 
-        presence = presence.buildUpon()
-                .state("FML PreInitialization")
+        presence = new MinecraftRichPresence.Builder()
+                .state(I18n.format("discordrp.state.preinit"))
+                .details(I18n.format("discordrp.loading"))
+                .startTimestamp(System.currentTimeMillis() / 1000)
+                .manifest(ManifestManager.getManifest())
                 .build();
 
         presence.setPresence();
@@ -54,7 +60,7 @@ public class ClientProxy extends CommonProxy {
         super.onInit(event);
 
         presence = presence.buildUpon()
-                .state("FML Initialization")
+                .state(I18n.format("discordrp.state.init"))
                 .build();
 
         presence.setPresence();
@@ -65,7 +71,7 @@ public class ClientProxy extends CommonProxy {
         super.onPostInit(event);
 
         presence = presence.buildUpon()
-                .state("FML PostInitialization")
+                .state(I18n.format("discordrp.state.postinit"))
                 .build();
 
         presence.setPresence();
@@ -76,7 +82,7 @@ public class ClientProxy extends CommonProxy {
         super.onLoadComplete(event);
 
         presence = new MinecraftRichPresence.Builder()
-                .details("In the Main Menu")
+                .details(I18n.format("discordrp.mainmenu"))
                 .startTimestamp(System.currentTimeMillis() / 1000)
                 .manifest(ManifestManager.getManifest())
                 .build();

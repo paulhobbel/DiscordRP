@@ -3,19 +3,24 @@ package me.paulhobbel.discordrp.utils;
 import com.google.common.base.Stopwatch;
 import me.paulhobbel.discordrp.DiscordRP;
 import me.paulhobbel.discordrp.api.IDiscordRPPlugin;
+import me.paulhobbel.discordrp.common.Log;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 
-import java.util.Map;
+import java.util.*;
 
 /**
  * Heavily inspired by HWYLA
  */
 public class PluginUtils {
     public static void filterAnnotatedPlugins(Map<Class<?>, IDiscordRPPlugin> plugins) {
-        for(ASMDataTable.ASMData data : DiscordRP.plugins) {
+        List<ASMDataTable.ASMData> sortedPlugins = new LinkedList<>(DiscordRP.plugins);
+        Comparator<ASMDataTable.ASMData> comparator = Comparator.comparingInt(o -> (int) o.getAnnotationInfo().getOrDefault("priority", 0));
+        sortedPlugins.sort(comparator.reversed());
+
+        for(ASMDataTable.ASMData data : sortedPlugins) {
             try {
-                String requiredMod = (String) data.getAnnotationInfo().getOrDefault("value", "");
+                String requiredMod = (String) data.getAnnotationInfo().getOrDefault("modid", "");
 
                 if (Loader.isModLoaded(requiredMod)) {
                     Stopwatch stopwatch = Stopwatch.createStarted();
