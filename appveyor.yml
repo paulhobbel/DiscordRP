@@ -32,5 +32,5 @@ for:
     except:
       - master
 
-  enviroment:
+  environment:
     VERSION_CLS: dev
