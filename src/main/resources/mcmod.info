@@ -6,7 +6,7 @@
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://minecraft.curseforge.com/projects/discordrp",
-  "updateJSON": "https://raw.githubusercontent.com/ItsDizzy/DiscordRP/develop/update.json",
+  "updateJSON": "https://raw.githubusercontent.com/ItsDizzy/DiscordRP/master/update.json",
   "authorList": ["ItsDizzy"],
   "credits": "Created by ItsDizzy",
   "logoFile": "assets/discordrp/textures/logo.png",
