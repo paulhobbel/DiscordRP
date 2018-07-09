@@ -1,0 +1,36 @@
+skip_tags: true
+
+cache: C:\Users\appveyor\.gradle
+
+build_script:
+- ps: ./gradlew.bat build
+
+artifacts:
+- path: build\libs\*.jar
+
+deploy:
+- provider: GitHub
+  tag: v$(appveyor_build_version)
+  release: DiscordRP v$(appveyor_build_version)
+  auth_token:
+    secure: UPBoGx5vHYq/hKFNh2LuYB8DNUXBN8z9PLKNVZsGMuiwHx7mD4TpKmqpJb6nflDK
+  on:
+    branch: master
+
+for:
+-
+  # Release builds
+  branches:
+    only:
+      - master
+
+  after_deploy:
+  - ps: ./gradlew.bat curseforge
+
+-
+  branches:
+    except:
+      - master
+
+  enviroment:
+    VERSION_CLS: dev
