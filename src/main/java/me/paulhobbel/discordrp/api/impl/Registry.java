@@ -22,7 +22,7 @@ public class Registry implements IDiscordRPRegistry {
 
     @Override
     public Optional<IDiscordRPDimension> getDimension(World world) {
-        return Optional.of(dimensionMap.get(world.provider.getDimensionType().getName()));
+        return Optional.ofNullable(dimensionMap.get(world.provider.getDimensionType().getName()));
         //return dimensionMap.get(world.provider.getDimensionType().getName());
     }
 
