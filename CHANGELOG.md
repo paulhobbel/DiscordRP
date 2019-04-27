@@ -1,3 +1,6 @@
+# DiscordRP v1.2.19:
+- Fixed crash when entering unknown dimension
+
 # DiscordRP v1.2.0.13:
  - Split DiscordRP's API into it's own jar so other mods can actually use it
  - DiscordRP now has support for plugins (replaces the cheaty DimensionRegistry)
