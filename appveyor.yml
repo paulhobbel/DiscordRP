@@ -13,7 +13,7 @@ deploy:
   tag: v$(appveyor_build_version)
   release: DiscordRP v$(appveyor_build_version)
   auth_token:
-    secure: UPBoGx5vHYq/hKFNh2LuYB8DNUXBN8z9PLKNVZsGMuiwHx7mD4TpKmqpJb6nflDK
+    secure: LmSz3gy+ZuwqfOo/ezDfu2lz4IHsjmw/Wi/CggfLrSKNV+5tjGFuwsx31G1iLWg9
   on:
     branch: master
 
