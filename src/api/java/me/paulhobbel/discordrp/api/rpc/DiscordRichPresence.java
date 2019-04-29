@@ -54,10 +54,16 @@ public class DiscordRichPresence extends Structure {
     public int partySize;
     public int partyMax;
 
+    /**
+     * @Deprecated
+     */
     public String matchSecret;
     public String joinSecret;
     public String spectateSecret;
 
+    /**
+     * @Deprecated
+     */
     public byte instance;
 
     private static final List<String> FIELD_ORDER = Collections.unmodifiableList(Arrays.asList(

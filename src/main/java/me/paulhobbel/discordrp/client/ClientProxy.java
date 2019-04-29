@@ -3,11 +3,18 @@ package me.paulhobbel.discordrp.client;
 import me.paulhobbel.discordrp.api.rpc.DiscordEventHandlers;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPC;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPCHandler;
+import me.paulhobbel.discordrp.api.rpc.DiscordReply;
+import me.paulhobbel.discordrp.client.handlers.DiscordHandler;
 import me.paulhobbel.discordrp.common.CommonProxy;
+import me.paulhobbel.discordrp.common.Log;
 import me.paulhobbel.discordrp.common.MinecraftRichPresence;
 import me.paulhobbel.discordrp.common.manager.DiscordAssetManager;
 import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.common.manager.ManifestManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.multiplayer.GuiConnecting;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.event.*;
 
@@ -21,14 +28,7 @@ public class ClientProxy extends CommonProxy {
 
         DiscordAssetManager.loadAssets();
         ManifestManager.loadManifest();
-
-        DiscordEventHandlers handlers = new DiscordEventHandlers();
-//        handlers.ready = user -> logger.info("Ready, user: " + user);
-//        handlers.disconnected = (errorCode, message) -> logger.info("An error occured, errorCode: " + errorCode + ", message: " + message);
-//        handlers.errored = (errorCode, message) -> logger.info("An error occured, errorCode: " + errorCode + ", message: " + message);
-
-        DiscordRPC.Initialize(!DiscordRPConfig.applicationId.isEmpty() ? DiscordRPConfig.applicationId : "460129247239864330", handlers);
-        DiscordRPCHandler.start();
+        DiscordHandler.loadRPC();
 
         // Translations are not loaded yet here it seems
 //        presence = new MinecraftRichPresence.Builder()

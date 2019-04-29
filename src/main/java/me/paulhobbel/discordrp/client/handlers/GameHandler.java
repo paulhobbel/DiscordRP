@@ -3,9 +3,11 @@ package me.paulhobbel.discordrp.client.handlers;
 import me.paulhobbel.discordrp.api.IDiscordRPDimension;
 import me.paulhobbel.discordrp.api.impl.Registry;
 import me.paulhobbel.discordrp.DiscordRP;
+import me.paulhobbel.discordrp.common.Log;
 import me.paulhobbel.discordrp.common.MinecraftRichPresence;
 import me.paulhobbel.discordrp.common.manager.ManifestManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,6 +28,18 @@ public class GameHandler {
                 .startTimestamp(System.currentTimeMillis() / 1000)
                 .manifest(ManifestManager.getManifest())
                 .build();
+
+        Minecraft instance = Minecraft.getMinecraft();
+
+        if(!instance.isSingleplayer()) {
+            ServerData data = instance.getCurrentServerData();
+
+            if(data != null) {
+                Log.info("MULTIPLAYER!, ip: {}", data.serverIP);
+                presence.partyId = "Join Server: " + data.serverIP;
+                presence.joinSecret = "460129247239864330-" + data.serverIP;
+            }
+        }
 
         presence.setPresence();
     }

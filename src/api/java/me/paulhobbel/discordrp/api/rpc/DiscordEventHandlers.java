@@ -41,7 +41,7 @@ public class DiscordEventHandlers extends Structure {
      * Callback for game update events such as joinGame and spectateGame
      */
     public interface OnGameUpdate extends Callback {
-        void accept(String joinSecret);
+        void accept(String secret);
     }
 
     /**
