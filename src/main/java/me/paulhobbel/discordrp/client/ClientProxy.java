@@ -4,6 +4,7 @@ import me.paulhobbel.discordrp.api.rpc.DiscordEventHandlers;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPC;
 import me.paulhobbel.discordrp.api.rpc.DiscordRPCHandler;
 import me.paulhobbel.discordrp.api.rpc.DiscordReply;
+import me.paulhobbel.discordrp.client.commands.DiscordRPCommand;
 import me.paulhobbel.discordrp.client.handlers.DiscordHandler;
 import me.paulhobbel.discordrp.common.CommonProxy;
 import me.paulhobbel.discordrp.common.Log;
@@ -16,6 +17,7 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.event.*;
 
 public class ClientProxy extends CommonProxy {
@@ -69,6 +71,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void onPostInit(FMLPostInitializationEvent event) {
         super.onPostInit(event);
+
+        ClientCommandHandler.instance.registerCommand(new DiscordRPCommand());
 
         presence = presence.buildUpon()
                 .state(I18n.format("discordrp.state.postinit"))

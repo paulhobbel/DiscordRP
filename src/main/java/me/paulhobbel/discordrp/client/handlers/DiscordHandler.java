@@ -19,45 +19,34 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(modid = DiscordRP.MODID, value = Side.CLIENT)
 public class DiscordHandler {
 
-    private static ServerData requestedServer;
-
     public static void loadRPC() {
         DiscordEventHandlers handlers = new DiscordEventHandlers();
 
         handlers.joinRequest = user -> {
             Log.info("Join request inbound from uid: {}", user.userId);
-            DiscordRPC.Respond(user, requestedServer == null ? DiscordReply.YES : DiscordReply.IGNORE);
+            ServerHandler.requestConnect(user);
+            //DiscordRPC.Respond(user, requestedServer == null ? DiscordReply.YES : DiscordReply.IGNORE);
         };
 
         handlers.joinGame = secret -> {
             String[] parts = secret.split("-");
             Log.info("Joining game..., secret: {}, id: {}, ip: {}",secret, parts[0], parts[1]);
 
-            requestedServer = new ServerData("", parts[1], false);
+            ServerHandler.queueConnect(new ServerData("", parts[1], false));
         };
 
-        DiscordRPC.Initialize(!DiscordRPConfig.applicationId.isEmpty() ? DiscordRPConfig.applicationId : "460129247239864330", handlers);
-        DiscordRPCHandler.start();
-    }
+        handlers.errored = (errorCode, message) -> {
+            switch (errorCode) {
+                case 4012:
+                    Log.error("DiscordRPC Error: no join request for that user, should show this to the user!");
+                    break;
 
-    @SubscribeEvent
-    public static void onTick(final TickEvent.ClientTickEvent event) {
-        Minecraft instance = Minecraft.getMinecraft();
-
-        if(requestedServer != null) {
-            try {
-                if (instance.player != null) {
-                    instance.player.world.sendQuittingDisconnectingPacket();
-                    instance.loadWorld(null);
-                }
-
-                instance.displayGuiScreen(new GuiConnecting(instance.currentScreen != null ? instance.currentScreen : new GuiMainMenu(), instance, requestedServer));
-
-            } catch (Exception e) {
-                Log.error("An error occured while joining", e);
-            } finally {
-                requestedServer = null;
+                default:
+                    Log.warn("DiscordRPC Error: errCode: {}, message: {}", errorCode, message);
             }
-        }
+        };
+
+        DiscordRPC.Initialize(!DiscordRPConfig.applicationId.isEmpty() ? DiscordRPConfig.applicationId : DiscordRP.DEFAULT_APPID, handlers);
+        DiscordRPCHandler.start();
     }
 }

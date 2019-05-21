@@ -21,7 +21,7 @@ public class DiscordRPC {
      * @param handlers The event handler
      */
     public static void Initialize(String appId, @Nullable DiscordEventHandlers handlers) {
-        INSTANCE.Discord_Initialize(appId, handlers, false, null);
+        INSTANCE.Discord_Initialize(appId, handlers, true, null);
     }
 
     /**

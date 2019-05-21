@@ -1,7 +1,7 @@
 #PARSE_ESCAPES
 
 # DiscordRP Language File - English
-# @author Dizzy
+# @author paulhobbel
 
 # General
 discordrp.loading=Loading Minecraft
@@ -9,9 +9,22 @@ discordrp.mainmenu=In The Main Menu
 discordrp.dimension=In The %1$s
 discordrp.singleplayer=Singleplayer
 discordrp.multiplayer=Multiplayer
+discordrp.accept=[Accept]
+discordrp.deny=[Deny]
 
 # Game States
 discordrp.state.preinit=FML PreInitialization
 discordrp.state.init=FML Initialization
 discordrp.state.postinit=FML PostInitialization
 discordrp.state.playing=Playing %1$s
+
+# Server
+discordrp.server.request_join=%s requests to join your server. %s or %s.
+discordrp.server.request_accepted=Join request accepted!
+discordrp.server.request_denied=Join request denied!
+discordrp.server.request_expired=Join request expired!
+
+#Commands
+discordrp.commands.usage=/discordrp <accept | deny>
+discordrp.commands.accept_join.usage=/discordrp accept <uid>
+discordrp.commands.deny_join.usage=/discordrp deny <uid>

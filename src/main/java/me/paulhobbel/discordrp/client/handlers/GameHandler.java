@@ -5,6 +5,7 @@ import me.paulhobbel.discordrp.api.impl.Registry;
 import me.paulhobbel.discordrp.DiscordRP;
 import me.paulhobbel.discordrp.common.Log;
 import me.paulhobbel.discordrp.common.MinecraftRichPresence;
+import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 import me.paulhobbel.discordrp.common.manager.ManifestManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
@@ -22,6 +23,8 @@ public class GameHandler {
 
     @SubscribeEvent
     public static void onClientConnected(FMLNetworkEvent.ClientConnectedToServerEvent event) {
+        Log.info("New connection, are we the one? idk");
+
         presence = new MinecraftRichPresence.Builder()
                 .details(I18n.format("connect.connecting"))
                 .state(I18n.format("discordrp.state.playing", event.isLocal() ? I18n.format("discordrp.singleplayer") : I18n.format("discordrp.multiplayer")))
@@ -31,12 +34,11 @@ public class GameHandler {
 
         Minecraft instance = Minecraft.getMinecraft();
 
-        if(!instance.isSingleplayer()) {
+        if(DiscordRPConfig.allowJoining && !instance.isSingleplayer()) {
             ServerData data = instance.getCurrentServerData();
 
             if(data != null) {
-                Log.info("MULTIPLAYER!, ip: {}", data.serverIP);
-                presence.partyId = "Join Server: " + data.serverIP;
+                presence.partyId = data.serverIP;
                 presence.joinSecret = "460129247239864330-" + data.serverIP;
             }
         }
@@ -46,7 +48,9 @@ public class GameHandler {
 
     @SubscribeEvent
     public static void onJoinWorld(EntityJoinWorldEvent event) {
-        if(event.getEntity().equals(Minecraft.getMinecraft().player)) {
+        Minecraft minecraft = Minecraft.getMinecraft();
+
+        if(event.getEntity().equals(minecraft.player)) {
             IDiscordRPDimension dimension = Registry.getInstance().getDimension(event.getWorld()).orElse(Registry.DEFAULT_DIMENSION);
 
             presence = presence.buildUpon()

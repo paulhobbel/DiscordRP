@@ -13,6 +13,9 @@ public class DiscordRPConfig {
     @Config.Comment("Whether to show your elapsed time on Discord")
     public static boolean showTime = true;
 
+    @Config.Comment("Whether to allow others joining your game")
+    public static boolean allowJoining = true;
+
     public static String[] customDimensions = new String[] { "default|In A Dimension" };
 
     @Config.Comment("Manually set the manifest of this modpack, can be useful if you are not using a curse modpack")
