@@ -3,6 +3,7 @@ package me.paulhobbel.discordrp;
 import me.paulhobbel.discordrp.common.CommonProxy;
 
 import me.paulhobbel.discordrp.common.Log;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
@@ -19,6 +20,7 @@ public class DiscordRP {
     public static final String UPDATEJSON = "https://raw.githubusercontent.com/paulhobbel/DiscordRP/master/update.json";
     public static final String DEFAULT_APPID = "460129247239864330";
 
+    public static Minecraft instance = Minecraft.getMinecraft();
     public static Set<ASMDataTable.ASMData> plugins;
 
     @SidedProxy(modId = MODID, clientSide = "me.paulhobbel.discordrp.client.ClientProxy")

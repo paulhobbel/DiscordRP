@@ -1,21 +1,11 @@
 package me.paulhobbel.discordrp.client;
 
-import me.paulhobbel.discordrp.api.rpc.DiscordEventHandlers;
-import me.paulhobbel.discordrp.api.rpc.DiscordRPC;
-import me.paulhobbel.discordrp.api.rpc.DiscordRPCHandler;
-import me.paulhobbel.discordrp.api.rpc.DiscordReply;
 import me.paulhobbel.discordrp.client.commands.DiscordRPCommand;
 import me.paulhobbel.discordrp.client.handlers.DiscordHandler;
 import me.paulhobbel.discordrp.common.CommonProxy;
-import me.paulhobbel.discordrp.common.Log;
 import me.paulhobbel.discordrp.common.MinecraftRichPresence;
 import me.paulhobbel.discordrp.common.manager.DiscordAssetManager;
-import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
-import me.paulhobbel.discordrp.common.manager.ManifestManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.multiplayer.GuiConnecting;
-import net.minecraft.client.multiplayer.ServerData;
+import me.paulhobbel.discordrp.common.manager.PackManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.event.*;
@@ -29,7 +19,7 @@ public class ClientProxy extends CommonProxy {
         super.onConstruction(event);
 
         DiscordAssetManager.loadAssets();
-        ManifestManager.loadManifest();
+        PackManager.loadPack();
         DiscordHandler.loadRPC();
 
         // Translations are not loaded yet here it seems
@@ -51,7 +41,7 @@ public class ClientProxy extends CommonProxy {
                 .state(I18n.format("discordrp.state.preinit"))
                 .details(I18n.format("discordrp.loading"))
                 .startTimestamp(System.currentTimeMillis() / 1000)
-                .manifest(ManifestManager.getManifest())
+                .manifest(PackManager.getPackInfo())
                 .build();
 
         presence.setPresence();
@@ -88,7 +78,7 @@ public class ClientProxy extends CommonProxy {
         presence = new MinecraftRichPresence.Builder()
                 .details(I18n.format("discordrp.mainmenu"))
                 .startTimestamp(System.currentTimeMillis() / 1000)
-                .manifest(ManifestManager.getManifest())
+                .manifest(PackManager.getPackInfo())
                 .build();
 
         presence.setPresence();

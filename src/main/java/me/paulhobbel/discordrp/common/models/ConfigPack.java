@@ -1,11 +1,11 @@
 package me.paulhobbel.discordrp.common.models;
 
-import me.paulhobbel.discordrp.api.IDiscordRPManifest;
+import me.paulhobbel.discordrp.api.IDiscordRPPack;
 import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
 
 import javax.annotation.Nonnull;
 
-public class ConfigManifest implements IDiscordRPManifest {
+public class ConfigPack implements IDiscordRPPack {
     @Nonnull
     @Override
     public String getName() {
@@ -14,18 +14,8 @@ public class ConfigManifest implements IDiscordRPManifest {
 
     @Nonnull
     @Override
-    public String getProjectId() {
+    public String getPackId() {
         return !DiscordRPConfig.manifest.projectId.isEmpty() ?
                 DiscordRPConfig.manifest.projectId : "default";
-    }
-
-    @Override
-    public String getVersion() {
-        return null;
-    }
-
-    @Override
-    public String getAuthor() {
-        return null;
     }
 }

@@ -2,14 +2,10 @@ package me.paulhobbel.discordrp.api;
 
 import javax.annotation.Nonnull;
 
-public interface IDiscordRPManifest {
+public interface IDiscordRPPack {
     @Nonnull
     String getName();
 
     @Nonnull
-    String getProjectId();
-
-    String getVersion();
-
-    String getAuthor();
+    String getPackId();
 }

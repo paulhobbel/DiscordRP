@@ -6,7 +6,7 @@ import me.paulhobbel.discordrp.DiscordRP;
 import me.paulhobbel.discordrp.common.Log;
 import me.paulhobbel.discordrp.common.MinecraftRichPresence;
 import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
-import me.paulhobbel.discordrp.common.manager.ManifestManager;
+import me.paulhobbel.discordrp.common.manager.PackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
@@ -29,7 +29,7 @@ public class GameHandler {
                 .details(I18n.format("connect.connecting"))
                 .state(I18n.format("discordrp.state.playing", event.isLocal() ? I18n.format("discordrp.singleplayer") : I18n.format("discordrp.multiplayer")))
                 .startTimestamp(System.currentTimeMillis() / 1000)
-                .manifest(ManifestManager.getManifest())
+                .manifest(PackManager.getPackInfo())
                 .build();
 
         Minecraft instance = Minecraft.getMinecraft();
@@ -66,7 +66,7 @@ public class GameHandler {
         presence = new MinecraftRichPresence.Builder()
                 .details(I18n.format("discordrp.mainmenu"))
                 .startTimestamp(System.currentTimeMillis() / 1000)
-                .manifest(ManifestManager.getManifest())
+                .manifest(PackManager.getPackInfo())
                 .build();
 
         presence.setPresence();

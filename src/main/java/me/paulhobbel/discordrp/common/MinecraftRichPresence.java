@@ -4,7 +4,7 @@ import me.paulhobbel.discordrp.api.IDiscordRPDimension;
 import me.paulhobbel.discordrp.api.rpc.DiscordRichPresence;
 import me.paulhobbel.discordrp.common.manager.DiscordAssetManager;
 import me.paulhobbel.discordrp.common.config.DiscordRPConfig;
-import me.paulhobbel.discordrp.api.IDiscordRPManifest;
+import me.paulhobbel.discordrp.api.IDiscordRPPack;
 import net.minecraft.client.resources.I18n;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
 public class MinecraftRichPresence extends DiscordRichPresence {
 
     private IDiscordRPDimension dimension;
-    private IDiscordRPManifest manifest;
+    private IDiscordRPPack manifest;
 
     private String originalDetails;
 
@@ -39,8 +39,8 @@ public class MinecraftRichPresence extends DiscordRichPresence {
 
         if(manifest != null) {
             detailParts.add(manifest.getName());
-            if(DiscordAssetManager.contains("pack_" + manifest.getProjectId())) {
-                smallImageKey = "pack_" + manifest.getProjectId();
+            if(DiscordAssetManager.contains("pack_" + manifest.getPackId())) {
+                smallImageKey = "pack_" + manifest.getPackId();
             }
             smallImageText = manifest.getName();
         }
@@ -56,7 +56,7 @@ public class MinecraftRichPresence extends DiscordRichPresence {
     public static class Builder extends DiscordRichPresence.BaseBuilder<Builder, DiscordRichPresence> {
 
         private IDiscordRPDimension dimension;
-        private IDiscordRPManifest manifest;
+        private IDiscordRPPack manifest;
 
         //private
 
@@ -88,7 +88,7 @@ public class MinecraftRichPresence extends DiscordRichPresence {
             return super.startTimestamp(0);
         }
 
-        public Builder manifest(IDiscordRPManifest manifest) {
+        public Builder manifest(IDiscordRPPack manifest) {
             this.manifest = manifest;
             return getThis();
         }

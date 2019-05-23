@@ -1,11 +1,11 @@
 package me.paulhobbel.discordrp.common.models;
 
-import me.paulhobbel.discordrp.api.IDiscordRPManifest;
+import me.paulhobbel.discordrp.api.IDiscordRPPack;
 import net.minecraft.client.Minecraft;
 
 import javax.annotation.Nonnull;
 
-public class DefaultManifest implements IDiscordRPManifest {
+public class DefaultManifest implements IDiscordRPPack {
     @Nonnull
     @Override
     public String getName() {
@@ -14,7 +14,7 @@ public class DefaultManifest implements IDiscordRPManifest {
 
     @Nonnull
     @Override
-    public String getProjectId() {
+    public String getPackId() {
         return "default";
     }
 
